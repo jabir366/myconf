@@ -79,11 +79,11 @@ def configure(repl):
     # Note: When enable, please disable the `complete_while_typing` option.
     #       otherwise, when there is a completion available, the arrows will
     #       browse through the available completions instead of the history.
-    repl.enable_history_search = False
+    repl.enable_history_search = True
 
     # Enable auto suggestions. (Pressing right arrow will complete the input,
     # based on the history.)
-    repl.enable_auto_suggest = False
+    repl.enable_auto_suggest = True
 
     # Enable open-in-editor. Pressing C-X C-E in emacs mode or 'v' in
     # Vi navigation mode will open the input in the current editor.
@@ -101,7 +101,7 @@ def configure(repl):
     repl.enable_input_validation = True
 
     # Use this colorscheme for the code.
-    repl.use_code_colorscheme('pastie')
+    repl.use_code_colorscheme('rainbow_dash')
 
     # Set color depth (keep in mind that not all terminals support true color).
 
