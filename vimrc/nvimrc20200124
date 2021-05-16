@@ -1,4 +1,4 @@
-
+"Last updated Sun May 16 20:51:35 IST 2021
 set splitbelow
 set splitright
 imap <F5> <esc> :w <CR>
@@ -19,6 +19,11 @@ call plug#begin('~/.config/nvim/plugged')
 "
 " " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
  Plug 'junegunn/vim-easy-align'
+ Plug 'Yggdroot/indentLine' 
+ let g:indentLine_char = '|'
+ Plug 'morhetz/gruvbox'
+ Plug 'tpope/vim-commentary'
+ Plug 'majutsushi/tagbar'
 "
 " " Any valid git URL is allowed
  Plug 'https://github.com/junegunn/vim-github-dashboard.git'
@@ -56,6 +61,7 @@ set number
 
 " Show file stats
 set ruler
+map <C-Q> :set nosplitright<CR>:TagbarToggle<CR>:set splitright<CR>
 
 " Blink cursor on error instead of beeping (grr)
 "set visualbell
@@ -188,3 +194,9 @@ set ffs=unix,dos,mac
 ca tn tabnew
 ca th tabp
 ca tl tabn
+let mapleader = " " " Leader is the space key
+let g:mapleader = " "
+let maplocalleader = "`"
+let g:maplocalleader = "`"
+nnoremap <SPACE> <Nop>
+nnoremap <leader>s :<C-u>FZF<CR>
