@@ -1,4 +1,4 @@
-#My Neovim setup
+#My Neovim setup thtththtthththt
 sudo apt-get install neovim
 
 for installing vim-plug

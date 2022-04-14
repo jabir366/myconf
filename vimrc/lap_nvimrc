@@ -22,6 +22,10 @@ Plug 'ncm2/ncm2'  " awesome autocomplete plugin
 Plug 'HansPinckaers/ncm2-jedi'  " fast python completion (use ncm2 if you want type info or snippet support)
 Plug 'ncm2/ncm2-bufword'  " buffer keyword completion
 Plug 'ncm2/ncm2-path'  " filepath completion
+Plug 'morhetz/gruvbox'  " filepath completion
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'Lokaltog/vim-easymotion' 
+
 
 call plug#end()
 
@@ -93,10 +97,11 @@ nnoremap <C-l> <C-w>l
 "nnoremap tl :tablast<CR>
 
 " colorscheme options
-let g:lucius_style="dark"
-let g:lucius_contrast="low"
-colo lucius
-set background=dark
+"let g:lucius_style="dark"
+"let g:lucius_contrast="low"
+"colo lucius
+colo gruvbox
+"set background=dark
 
 " mapping Esc
 imap <F13> <Esc>
@@ -143,6 +148,8 @@ let g:airline#extensions#tabline#enabled = 1
 " do not show error/warning section
 let g:airline_section_error = ""
 let g:airline_section_warning = ""
+let g:airline_theme='badwolf'
+
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -163,8 +170,9 @@ nmap <leader>q :lcl<cr>:q<cr>
 nnoremap <leader>h :nohlsearch<Bar>:echo<CR>
 
 " FlyGrep settings
-nnoremap <leader>s :FlyGrep<cr>
-
+nnoremap <leader>g :FlyGrep<cr>
+nnoremap <leader>s :FZF<cr>
+map , <Plug>(easymotion-prefix)
 " easy breakpoint python
 au FileType python map <silent> <leader>b ofrom pudb import set_trace; set_trace()<esc>
 au FileType python map <silent> <leader>B Ofrom pudb import set_trace; set_trace()<esc>
