@@ -1,0 +1,47 @@
+#!/bin/bash
+# remove old screens with name jabir
+screen -ls|sed '1d;$d'|awk '{print $1 }'|grep jab|xargs -I . screen -X -S . quit
+#create windows with needed names
+screen -S jab -dm -T screen.xterm-256color -t OWN tmux a
+
+#the vm is no longer there, can remove this
+#screen -S jab -X -T screen.xterm-256color screen -t "myvm" ssh myvm
+screen -S jab -X -T screen.xterm-256color screen -t m1 ssh m1
+screen -S jab -X -T screen.xterm-256color screen -t m3 ssh m3
+#screen -S jab -X -T screen.xterm-256color screen -t m3 ssh moon
+#send the commands that needs to be executed in each window
+#screen -S jab -p myvm -X stuff "tmux a \n"
+#screen -S jab -p m1 -X stuff "ssh m1 \n"
+#screen -S jab -p m3 -X stuff "ssh m3 \n"
+#add needed things to screen buffer
+echo user12345 >userpwd_file
+screen -S jab -X readbuf userpwd_file
+sleep 5
+#screen -S jab -p m1 -X stuff "user12345\n"
+#screen -S jab -p m3 -X stuff "user12345\n"
+screen -S jab -p m1 -X stuff "tmux a \n"
+screen -S jab -p m3 -X stuff "tmux a \n"
+tmux send-keys -t "jab:0.0" C-c
+tmux send-keys -t "jab:0.0" ./moon_vpn Enter
+#sleep 4
+tmux send-keys -t "jab:0.1" C-c
+tmux send-keys -t "jab:0.1" ./vm_vpn Enter
+sleep 3
+tmux send-keys -t "jab:0.0" $(cat userpwd_file) Enter
+tmux send-keys -t "jab:0.1" $(cat userpwd_file) Enter
+
+#both sshuttle now uses user to connect. the vm is not there
+#tmux paste-buffer -t  "jab:0.1"
+#tmux send-keys -t "jab:0.1" Enter
+
+sleep 4
+screen -S jab -X -T screen.xterm-256color screen -t m2 ssh m2
+screen -S jab -X -T screen.xterm-256color screen -t new-desk ssh newdesk
+screen -S jab -p m2 -X stuff "tmux a \n"
+screen -S jab -p new-desk -X stuff "tmux a \n"
+screen -rx jab 
+#sleep .3
+rm userpwd_file
+
+
+
