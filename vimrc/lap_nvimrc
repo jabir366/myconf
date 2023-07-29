@@ -22,7 +22,7 @@ Plug 'ncm2/ncm2'  " awesome autocomplete plugin
 Plug 'HansPinckaers/ncm2-jedi'  " fast python completion (use ncm2 if you want type info or snippet support)
 Plug 'ncm2/ncm2-bufword'  " buffer keyword completion
 Plug 'ncm2/ncm2-path'  " filepath completion
-Plug 'morhetz/gruvbox'  " filepath completion
+Plug 'morhetz/gruvbox'  " favorite theme
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'Lokaltog/vim-easymotion' 
 
@@ -110,15 +110,8 @@ inoremap <c-c> <ESC>
 nnoremap <C-z> <Esc>  " disable terminal ctrl-z
 
 " map S to replace current word with pasteboard
-nnoremap S diw"0P
 nnoremap cc "_cc
 nnoremap q: :q<CR>
-nnoremap w: :w<CR>
-
-" map paste, yank and delete to named register so the content
-" will not be overwritten (I know I should just remember...)
-nnoremap x "_x
-vnoremap x "_x
 
 set clipboard=unnamedplus
 
@@ -277,3 +270,9 @@ let g:gitgutter_map_keys = 0
 " ctrl p options
 let g:ctrlp_custom_ignore = '\v\.(npy|jpg|pyc|so|dll)$'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+nmap <Tab> :bn <CR>
+nmap <S-Tab> :bp <CR>
+nmap <Leader>x :bd <CR>
+nnoremap <F2> :set invpaste paste?<CR> set pastetoggle=<F2>
+nnoremap <F3> :if &mouse == 'a'<Bar>set mouse=<Bar>else<Bar>set mouse=a<Bar>endif<CR>
+
